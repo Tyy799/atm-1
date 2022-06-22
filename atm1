@@ -605,3 +605,112 @@ void changePasswordenglish()
         saveData();
     }
 }
+
+void homepage()
+{   
+    system("cls");
+    int n;
+    printf("\n");
+    printf("\n");
+    printf("    ===========================取款请按3==============存款请按4===========================");
+    printf("\n");
+    printf("    ===========================转账请按5==============修改密码请按6=======================");
+    printf("\n");
+    scanf_s("%d", &n);
+    switch (n)
+    {
+    case 3:drawMoney(); break;
+    case 4:saveMoney(); break;
+    case 5:transferMoney(); break;
+    case 6:changePassword(); break;
+    case 7:exit(0);
+    }
+}
+
+void homepageenglish()
+{
+    system("cls");
+ int n;
+    printf("\n");
+    printf("\n");
+    printf("    ====================Draw money please press 3==============Save money please press 4================");
+    printf("\n");
+    printf("    ====================Transfer money please press 5==============Change the password please press 6===============");
+    printf("\n");
+    scanf_s("%d", &n);
+    switch (n)
+    {
+    case 3:drawMoneyenglish(); break;
+    case 4:saveMoneyenglish(); break;
+    case 5:transferMoneyenglish(); break;
+    case 6:changePasswordenglish(); break;
+    case 8:exit(0);
+    }
+
+}
+
+
+
+
+//展示菜单  
+void showmenu()
+{
+    system("cls");
+    if (language == 1)
+    {
+        printf("\n");
+        printf("\n");
+        printf("    ============= 登录***********请按 1=====================================开户***********请按 2=====================");
+        printf("\n");
+        printf("    ================================================退出请按 7=======================================================");
+        printf("\n");
+    }
+    else if(language==2)
+    {
+        printf("\n");
+        printf("\n");
+        printf("    ============= signIn***********Please press 0================signUp***********Please press 9================");
+        printf("\n");
+        printf("    =======================================Log out please press 7===========================================");
+        printf("\n");
+    }
+    int n;
+    scanf_s("%d", &n);
+    if (n == 1)
+    {
+        signIn();
+    }
+    else if (n == 2)
+    {
+        signUp();
+    }
+    else if (n == 0)
+    {
+        signInenglish();
+    }
+    else if (n == 9)
+    {
+        signUpenglish();
+    }
+    else if (n == 7);
+    {
+        exit(0);
+    }
+   
+   
+}
+
+
+
+int main()
+{
+    loadData();
+    printf("\n");
+    printf("\n");
+    printf("                中文***********请按1                  English service***********press 2");
+    printf("\n");
+    scanf_s("%d", &language);
+    showmenu();
+    saveData();
+    return 0;
+}
