@@ -426,3 +426,182 @@ int findOtherAccount(char otherUsername[])
     }
     return 0;
 }
+
+//转账
+void transferMoney()
+{
+    system("cls");
+    int n;
+    printf("    =================返回请按8===========================转账请再按一次5 =================     \n");
+    scanf_s("%d", &n);
+    if (n == 8)
+    {
+        homepage();
+    }
+    else if (n == 5)
+    {
+        char otherUsername[19];
+        //Account* otherAcccount = NULL;
+        printf("请输入对方的账户：\n");
+        scanf_s("%s", otherUsername, 19);
+
+        //查找收款账户
+        if (findOtherAccount(otherUsername))
+        {
+            printf("请输入你要转账的金额：\n");
+            int money;
+            scanf_s("%d", &money);
+
+            //判断金额是否小于余额
+            if (curAccount->money >= money)
+            {
+              
+                curAccount->money -= money;
+                otherAccount->money += money;
+                printf("转账成功\n");
+            }
+
+
+            else
+            {
+                printf("余额不足，转账失败\n");
+            }
+
+        }
+        else
+        {
+            printf("查无此账户");
+        }
+        
+        saveData();
+    }
+}
+
+void transferMoneyenglish()
+{
+    system("cls");
+    int n;
+    printf("    ==========Back homepage please press 8================To transfer money please press 5 again ==============    \n ");
+    scanf_s("%d",&n);
+    if (n ==8)
+    {
+        homepageenglish();
+    }
+    else if (n == 5)
+    {
+        char otherUsername[19];
+        //Account* otherAcccount = NULL;
+        printf("please enter the other person's account：\n");
+        scanf_s("%s", otherUsername, 19);
+
+        //查找收款账户
+        if (findOtherAccount(otherUsername))
+        {
+            printf("Please enter the amount that you wang to transfer：\n");
+            int money;
+            scanf_s("%d", &money);
+
+            //判断金额是否小于余额
+            if (curAccount->money >= money)
+            {
+                curAccount->money -= money;
+                otherAccount->money += money;
+                printf("The transfer was successful\n");
+            }
+
+
+            else
+            {
+                printf("Insufficient balance，transfer failed\n");
+            }
+
+        }
+        else
+        {
+            printf("There is no such account available");
+        }
+        saveData();
+    }
+}
+
+void changePassword()
+{
+    system("cls");
+    int n;
+    printf("    =================返回请按8==========================修改密码请再按一次6 =================     \n");
+    scanf_s("%d", &n);
+    if (n == 8)
+    {
+        homepage();
+    } 
+    else if (n == 6)
+    {
+        printf("请输入旧密码：\n");
+        char oldPassword[7] = { '\0' };
+        scanf_s("%s", oldPassword, 7);
+        if (strcmp(oldPassword, curAccount->password) == 0)
+        {
+            printf("请输入新密码：\n");
+            while (1)
+            {
+                scanf_s("%s", curAccount->password, 7);
+                if (strcmp(oldPassword, curAccount->password) == 0)
+                {
+                    printf("新旧密码不能一样!\n");
+                    printf("重新输入!\n");
+                }
+                else
+                    break;
+            }
+            printf("修改成功！\n");
+
+        }
+        else
+        {
+            printf("密码错误！不能修改！\n");
+
+        }
+        saveData();
+    }
+}
+
+void changePasswordenglish()
+{
+    system("cls");
+    int n;
+    printf("    ========Back homepage pleaase press 8============To change the password please press 6 again ===========    \n ");
+    scanf_s("%d", &n);
+    if (n == 8)
+    {
+        homepageenglish();
+    }
+    else if (n == 6)
+    {
+        printf("Please enter the oldpassword：\n");
+        char oldPassword[7] = { '\0' };
+        scanf_s("%s", oldPassword, 7);
+        if (strcmp(oldPassword, curAccount->password) == 0)
+        {
+            printf("Please enter a newpassword：\n");
+            while (1)
+            {
+                scanf_s("%s", curAccount->password, 7);
+                if (strcmp(oldPassword, curAccount->password) == 0)
+                {
+                    printf("Old and new passwords cannot be the same!\n");
+                    printf("Re-enter!\n");
+                }
+                else
+                    break;
+            }
+            printf("Change successfully！\n");
+
+        }
+        else
+        {
+            printf("Wrong password！cannot change+！\n");
+
+        }
+        saveData();
+    }
+}
